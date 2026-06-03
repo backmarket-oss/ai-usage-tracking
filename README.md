@@ -18,9 +18,12 @@ Track your personal Claude Code carbon footprint, API spending, and model effici
 
 ## Installation
 
-1. Install this skill into Claude Code
-2. Run `/usage-tracking` in any Claude Code session
-3. Follow the interactive onboarding (~2 minutes)
+```bash
+claude plugins marketplace add backmarket-oss/ai-usage-tracking
+claude plugins install usage-tracking@ai-usage-tracking
+```
+
+Then run `/usage-tracking` in any Claude Code session to follow the interactive onboarding (~2 minutes).
 
 To update your preferences at any time, run `/usage-tracking` again.
 

@@ -1,0 +1,13 @@
+{
+  "name": "usage-tracking",
+  "version": "0.1.0",
+  "description": "Set up weekly CO2 emissions, cost, and model efficiency tracking for Claude Code. Run this to configure what you see, where, and how often. Re-run anytime to change your preferences.",
+  "author": {
+    "name": "Back Market OSS"
+  },
+  "contributors": [
+    { "name": "Antonin Mellier", "email": "antonin.mellier@backmarket.com" },
+    { "name": "Roshan Velpula", "email": "roshan.velpula@backmarket.com" },
+    { "name": "Thomas Brouder", "email": "thomas.brouder@backmarket.com" }
+  ]
+}
