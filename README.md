@@ -1,6 +1,16 @@
 # Claude Code Usage Tracker
 
-Track your personal Claude Code carbon footprint, API spending, and model efficiency — from your Claude session.
+Track your personal Claude Code carbon footprint and model efficiency — from your Claude session.
+
+## Motivation
+
+A coding agent is a genuinely useful tool, but has a cost that today's tooling does not surface: carbon emissions.
+
+The AI industry as a whole remains largely opaque about the environmental footprint of a single inference call, so there's no authoritative number to just look up.
+
+This tool provides carbon emissions estimations directly in your terminal, allowing for a deliberate carbon-aware usage.
+
+The numbers aren't precise measurements. They're the best approximation we could build from public research, and the hypothesis we did to bridge the gaps. We documented the hypothesis so they can be checked and improved. See [METHODOLOGY.md](METHODOLOGY.md).
 
 ## Features
 
@@ -88,44 +98,4 @@ Settings are saved to `~/.claude/co2-tracker-config.json`.
 
 All estimates are computed locally from your Claude Code transcript files (`~/.claude/projects/**/*.jsonl`). No data is sent anywhere.
 
-### Step 1 — Effective tokens
-
-Raw token counts are weighted to reflect actual compute demand:
-
-```
-effective_tokens = input_tokens        × 1.00
-                 + output_tokens       × 1.00
-                 + cache_write_tokens  × 1.25
-                 + cache_read_tokens   × 0.10
-```
-
-- **Cache reads (0.10×)**: the KV cache is already computed and stored; retrieval requires far less GPU work than a full forward pass.
-- **Cache writes (1.25×)**: writing to the prompt cache carries overhead on top of the normal input computation.
-
-### Step 2 — Energy
-
-```
-energy_Wh = (effective_tokens / 1000) × 3.0 Wh
-```
-
-We use **3.0 Wh per 1,000 effective tokens** as the inference energy rate for large language models running in data center conditions.
-
-### Step 3 — CO2
-
-```
-co2_inference_g = energy_Wh × 0.390      # global avg grid carbon intensity (gCO2/Wh)
-co2_total_g     = co2_inference_g × 1.5  # lifecycle multiplier for embodied carbon
-```
-
-- **0.390 gCO2/Wh**: global average grid carbon intensity (operational emissions only).
-- **1.5× lifecycle multiplier**: accounts for embodied carbon — hardware manufacturing, transport, and end-of-life disposal — on top of operational emissions.
-
-### Step 4 — Cost
-
-Cost is calculated per-model using Anthropic's published token prices, applied separately to input, output, cache-write, and cache-read tokens. The pricing table is hardcoded in `scripts/co2-tracker.py` and will need updating if Anthropic changes rates.
-
-### Caveats
-
-- **Carbon intensity is a global average.** Actual intensity varies significantly by region (e.g. France ~0.06 gCO2/Wh vs US ~0.42 gCO2/Wh). A future version may support per-region configuration.
-- **Energy and lifecycle constants are estimates** based on published research. Actual figures depend on the specific data center infrastructure and hardware generation Anthropic uses, which is not publicly disclosed.
-- **Cost figures may lag** publicly listed Anthropic prices. If you notice a discrepancy, update the pricing table at the top of `scripts/co2-tracker.py`.
+The full derivation — effective tokens, energy, CO2, and cost — along with the research and hypotheses behind each constant, lives in [METHODOLOGY.md](METHODOLOGY.md). Some of those constants are the author's own reasoned estimates rather than settled science — if you have better data, open an issue or PR.
