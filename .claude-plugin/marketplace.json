@@ -1,0 +1,26 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-usage-tracking",
+  "description": "Claude Code usage tracking — weekly CO2 emissions, cost, and model efficiency",
+  "owner": {
+    "name": "Back Market OSS",
+    "email": "thomas.brouder@backmarket.com"
+  },
+  "plugins": [
+    {
+      "name": "usage-tracking",
+      "description": "Set up weekly CO2 emissions, cost, and model efficiency tracking for Claude Code. Run this to configure what you see, where, and how often. Re-run anytime to change your preferences.",
+      "author": {
+        "name": "Back Market OSS"
+      },
+      "category": "data",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/backmarket-oss/ai-usage-tracking.git",
+        "path": "plugins/usage-tracking",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/backmarket-oss/ai-usage-tracking"
+    }
+  ]
+}
