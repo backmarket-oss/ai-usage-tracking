@@ -4,6 +4,7 @@ Track your personal Claude Code carbon footprint and model efficiency — from y
 
 ## Motivation
 
+
 A coding agent is a genuinely useful tool, but has a cost that today's tooling does not surface: carbon emissions.
 
 The AI industry as a whole remains largely opaque about the environmental footprint of a single inference call, so there's no authoritative number to just look up.
