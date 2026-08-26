@@ -8,9 +8,9 @@ repos:
       description: Detect secrets in your data.
       entry: bash -c 'docker run --rm -v "$PWD:/src" ghcr.io/trufflesecurity/trufflehog:latest git --branch=HEAD file:///src --fail --only-verified'
       language: system
-      stages: ["commit", "push"]
+      stages: ["pre-commit", "pre-push"]
     - id: semgrep
       name: semgrep
       entry: bash -c 'docker run --rm -v "$PWD:/src" semgrep/semgrep semgrep --config p/ci --error --skip-unknown-extensions'
       language: system
-      stages: ["commit", "push"]
+      stages: ["pre-commit", "pre-push"]
